@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">MoEngage Assignment</string>
+    <string name="app_name">Feedly</string>
+    <string name="share">Share</string>
+    <string name="new_to_old">New To Old</string>
+    <string name="apply">Apply</string>
+    <string name="old_to_new">Old To New</string>
 </resources>

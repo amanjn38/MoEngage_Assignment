@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Default background color, you can change this -->
+
+    <corners android:topLeftRadius="12dp"
+        android:topRightRadius="12dp"/> <!-- Adjust the radius to control the roundness of the corners -->
+
+    <size android:width="100dp" android:height="100dp" /> <!-- Adjust the size to create a square shape -->
+</shape>

@@ -1,29 +1,34 @@
 package com.example.moengageassignment.repository
 
-import com.example.moengageassignment.api.NewsAPIService
-import com.example.moengageassignment.models.NewsApiResponse
-import com.example.moengageassignment.utilities.Resource
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.moengageassignment.api.ApiService
+import com.example.moengageassignment.models.Article
+import com.example.moengageassignment.models.toNewsArticle
+import com.example.moengageassignment.roomhelper.NewsArticleDao
+import javax.inject.Inject
 
-class NewsRepository {
-    private val apiService: NewsAPIService = Retrofit.Builder()
-        .baseUrl("https://candidate-test-data-moengage.s3.amazonaws.com/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(NewsAPIService::class.java)
+class NewsRepository @Inject constructor(
+    private val apiService: ApiService,
+    private val newsDao: NewsArticleDao
+) {
 
-    suspend fun getNews(): Resource<NewsApiResponse> {
-        return try {
-            val response = apiService.getNews()
-            if (response.isSuccessful) {
-                Resource.Success(response.body())
-            } else {
-                Resource.Error("Error: ${response.message()}")
-            }
-        } catch (e: Exception) {
-            Resource.Error("Error: ${e.message}")
-        }
+    suspend fun fetchNewsFromInternet(): List<Article> {
+        // Fetch data from the internet using ApiService
+        val jsonResponse = apiService.getNews()
+        val articles = apiService.parseNewsResponse(jsonResponse)
+
+        // Save fetched data to Room for future offline access
+        saveNewsToDatabase(articles)
+
+        return articles
+    }
+
+    suspend fun getCachedNews(): List<Article> {
+        // Fetch data from Room database
+        return newsDao.getAllArticles().map { it.toNewsArticle() }
+    }
+
+    private suspend fun saveNewsToDatabase(articles: List<Article>) {
+        // Save data to Room database
+        newsDao.insertArticles(articles)
     }
 }
-

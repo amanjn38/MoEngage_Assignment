@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sort_view_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/sortRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp">
+
+            <RadioButton
+                android:id="@+id/sortNewToOld"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:checked="false"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center"
+                android:text="@string/old_to_new"
+                android:textColor="@drawable/radio_flat_text_color"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/sortOldToNew"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginVertical="4dp"
+                android:background="@drawable/radio_flat_selector"
+                android:button="@android:color/transparent"
+                android:checked="false"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center"
+                android:text="@string/new_to_old"
+                android:textColor="@drawable/radio_flat_text_color"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/bt_apply"
+            style="@style/ButtonTextStyle2_Selected_Primary"
+            android:layout_width="160dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@string/apply" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
